@@ -27,6 +27,19 @@ export function checkEligibility(
   }
 
   if (
+    !grant.applicant_type.includes(
+      business.applicantType
+    )
+  ) {
+    return {
+      eligible: false,
+      concerns: [
+        'Applicant type is not eligible for this programme',
+      ],
+    }
+  }
+
+  if (
     business.employeeCount < grant.employee_count_min
   ) {
     concerns.push(
